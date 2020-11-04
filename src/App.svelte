@@ -11,4 +11,4 @@
 
 <h1>Hello {name}!</h1>
 
-<Button title="Test"></Button>
+<Button title="Hello computer"></Button>
