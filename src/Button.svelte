@@ -1,5 +1,7 @@
 <script>
+    import Button, {Label, Icon} from '@smui/button';
     export let title;
 </script>
 
-<button type="button">{title}</button>
+<Button variant="raised"><Label>{title}</Label></Button>
+<Button><Label>{title}</Label></Button>
