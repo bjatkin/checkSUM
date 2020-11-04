@@ -34,8 +34,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="668.14221"
-     inkscape:cy="553.24483"
+     inkscape:cx="1015.4526"
+     inkscape:cy="629.65741"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -43,7 +43,7 @@
      inkscape:window-width="1440"
      inkscape:window-height="900"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="23"
      inkscape:window-maximized="0"
      inkscape:snap-text-baseline="false"
      inkscape:snap-page="true" />
@@ -55,7 +55,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -201,7 +201,7 @@
          sodipodi:role="line"
          id="tspan2189"
          x="809.63727"
-         y="420.22345"></tspan></text>
+         y="420.22345" /></text>
     <path
        id="path2210"
        style="fill:#474242;fill-opacity:0.939516"
@@ -238,7 +238,7 @@
          style="font-size:18.6667px;text-align:center;text-anchor:middle;fill:#25cbea;fill-opacity:1"
          id="tspan2236">Sign Up</tspan></text>
     <rect
-       style="fill:#25cbea;fill-opacity:1;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+       style="fill:#25cbea;fill-opacity:1;stroke:#25cbea;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
        id="rect2263"
        width="1920"
        height="81.817238"
@@ -255,17 +255,6 @@
          x="228"
          y="49.142822"
          style="font-size:24px;fill:#ffffff;fill-opacity:1">About us</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:24px;line-height:1.25;font-family:sans-serif;fill:#fbf2f2;fill-opacity:1;stroke:none"
-       x="640.85712"
-       y="47.142822"
-       id="text2275"><tspan
-         sodipodi:role="line"
-         id="tspan2273"
-         x="640.85712"
-         y="47.142822"
-         style="font-size:24px;fill:#fbf2f2;fill-opacity:1">F.A.Q.s</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:24px;line-height:1.25;font-family:sans-serif;fill:#fdf8f8;fill-opacity:1;stroke:none;stroke-opacity:1"
