@@ -5,10 +5,10 @@
 
 <style>
 	h1 {
-		color: purple;
+		color: rgb(0, 128, 11);
 	}
 </style>
 
 <h1>Hello {name}!</h1>
 
-<Button title="Test"></Button>
+<Button title="Hello computer"></Button>
