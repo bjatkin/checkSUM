@@ -1,0 +1,37 @@
+{
+  "name": "checkSUM",
+  "version": "1.0.0",
+  "description": "This is an HCI artifact which was created for CS 656 Interactive Software Systems",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bjatkin/checkSUM.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bjatkin/checkSUM/issues"
+  },
+  "homepage": "https://github.com/bjatkin/checkSUM#readme",
+  "devDependencies": {
+    "@smui/button": "^1.0.0",
+    "css-loader": "^5.0.1",
+    "mini-css-extract-plugin": "^1.2.1",
+    "postcss": "^8.1.4",
+    "sass": "^1.28.0",
+    "sass-loader": "^10.0.5",
+    "style-loader": "^2.0.0",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^4.2.0"
+  },
+  "dependencies": {
+    "optimize-css-assets-webpack-plugin": "^5.0.4",
+    "svelte": "^3.29.4",
+    "svelte-loader": "^2.13.6"
+  }
+}
