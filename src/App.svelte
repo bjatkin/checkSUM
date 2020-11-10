@@ -1,18 +1,9 @@
 <script>
-	import Button from "./Button.svelte";
-	import Nav from "./Nav.svelte";
+	//import Nav from "./Nav.svelte"; This one sends the tab to a new link not sure if thats what we want
 	import Login from "./Login.svelte";
-	export let name;
+	import TabBar from "./TabBar.svelte";
 </script>
 
-<style>
-	/* h1 {
-		color: purple;
-	} */
-</style>
+<TabBar />
 
-<Nav></Nav>
-
-<h1>Hello {name}!</h1>
-
-<Button title="Hello computer"></Button>
+<Login></Login>
