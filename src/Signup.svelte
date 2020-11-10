@@ -8,9 +8,11 @@
 <br />
 <TextBox type = "email" label="Email Address"></TextBox>
 <br />
-<TextBox type = "password" label="Password"></TextBox>
+<TextBox type = "email" label="Confirm Email Address"></TextBox>
 <br />
-<RaisedButton title = "SIGN IN"></RaisedButton>
+<TextBox type = "password" label="Account Password"></TextBox>
 <br />
-<Button title = "forgot password?" message = 'Forgot Password!!'></Button>
-<Button title = "Create account" message = 'Creating an account'></Button>
+<TextBox type = "password" label="Confirm Account Password"></TextBox>
+<br />
+<RaisedButton title = "Next"></RaisedButton>
+<br />
