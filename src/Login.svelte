@@ -6,7 +6,7 @@
 </script>
 
 <br />
-<TextBox type = "email" label="Email"></TextBox>
+<TextBox type = "email" label="Email Address"></TextBox>
 <br />
 <TextBox type = "password" label="Password"></TextBox>
 <br />
