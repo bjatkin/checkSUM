@@ -2,8 +2,6 @@
 	import Login from "./Login.svelte";
 	import TabBar from "./TabBar.svelte";
 	import Signup from "./Signup.svelte";
-<<<<<<< HEAD
-=======
 
 	let tabItems = [
     { label: "Login", value: 1 },
@@ -15,7 +13,6 @@
 	function print(currentTab) {
 		alert(currentTab);
 	}
->>>>>>> signup
 </script>
 
 <TabBar bind:activeTabValue={currentTab} items={tabItems}/>
@@ -27,14 +24,9 @@
 {/if}
 
 {#if 2 === currentTab}
-	About Us Component goes here.
+	About Us Component goes here
 {/if}
 
-<<<<<<< HEAD
-<!--Login></Login-->
-<Signup></Signup>
-=======
 {#if 3 === currentTab}
 	Contact Us Component goes here
 {/if}
->>>>>>> signup
