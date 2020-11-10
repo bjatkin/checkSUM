@@ -9,10 +9,6 @@
 	{ label: "Contact Us", value: 3 }
   	];
 	let currentTab;
-	  
-	function print(currentTab) {
-		alert(currentTab);
-	}
 </script>
 
 <TabBar bind:activeTabValue={currentTab} items={tabItems}/>

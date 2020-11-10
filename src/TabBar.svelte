@@ -63,7 +63,7 @@ span:hover {
 }
 
 li.active > span {
-    color: #495057;
+    color: #0f73d8;
     background-color: #fff;
     border-color: #dee2e6 #dee2e6 #fff;
 }

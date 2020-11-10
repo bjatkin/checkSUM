@@ -1,7 +1,8 @@
 <script>
+    import { createEventDispatcher } from 'svelte';
+    const dispatch = createEventDispatcher();
     import Button, {Label, Icon} from '@smui/button';
-    export let title;
-    export let message;
+    export let title = "YO";
 </script>
 
-<Button on:click={() => alert(message)}><Label>{title}</Label></Button>
+<Button><Label>{title}</Label></Button>

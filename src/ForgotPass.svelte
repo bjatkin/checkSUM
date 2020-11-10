@@ -1,0 +1,1 @@
+<h1>Placeholder for forgot password</h1>

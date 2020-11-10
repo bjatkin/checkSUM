@@ -4,4 +4,4 @@
 </script>
 
 
-<Button variant="raised" on:click={() => alert('Signing in...')}><Label>{title}</Label></Button>
+<Button variant="raised"><Label>{title}</Label></Button>

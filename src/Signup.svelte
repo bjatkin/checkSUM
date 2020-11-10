@@ -10,7 +10,7 @@ import App from "./App.svelte";
     function toggle() { //is not being called idk why
         alert("you clicked!");
         user.firstpage = !user.firstpage;
-}
+    }
     //TODO add svg and move things aroung
 </script>
 
