@@ -24,7 +24,7 @@
 {/if}
 
 {#if 2 === currentTab}
-	About Us Component goes here
+	About Us Component goes here.
 {/if}
 
 {#if 3 === currentTab}
