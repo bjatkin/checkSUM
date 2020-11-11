@@ -113,11 +113,6 @@
         margin-top: 30px;
     }
 
-    /* h1 {
-        font-family: Roboto, sans-serif;
-        color: #e89a40;
-    } */
-
     .parent {
         text-align: center;
         width: 100%;

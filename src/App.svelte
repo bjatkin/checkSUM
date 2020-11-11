@@ -1,5 +1,6 @@
 <script>
 	import Login from "./Login.svelte";
+	import Contact from "./ContactPage.svelte";
 
 	import Tab, {Icon, Label} from '@smui/tab';
 	import TabBar from '@smui/tab-bar';
@@ -34,5 +35,5 @@
 {/if}
 
 {#if active == 'Contact Us'}
-	Contact Us Component goes here
+	<Contact></Contact>
 {/if}
