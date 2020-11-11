@@ -4,12 +4,9 @@
 	import About from "./AboutUsPage.svelte";
 	import Tab, {Icon, Label} from '@smui/tab';
 	import TabBar from '@smui/tab-bar';
-<<<<<<< HEAD
 	import QR from './QRCode.svelte';
-=======
 	import Signup from "./Signup.svelte";
 
->>>>>>> about
 	let active = 'Login';
 	let tabItems = ["Login", "About Us", "Contact Us"];
 
