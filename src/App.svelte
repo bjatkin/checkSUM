@@ -1,7 +1,7 @@
 <script>
 	import Login from "./Login.svelte";
 	import Contact from "./ContactPage.svelte";
-
+	import About from "./AboutUsPage.svelte";
 	import Tab, {Icon, Label} from '@smui/tab';
 	import TabBar from '@smui/tab-bar';
 	import QR from './QRCode.svelte';
@@ -31,8 +31,7 @@
 {/if}
 
 {#if active == 'About Us'}
-	About Us Component goes here
-	<QR></QR>
+	<About></About>
 {/if}
 
 {#if active == 'Contact Us'}
