@@ -28,8 +28,7 @@
 </div>
 
 {#if active == 'Login'}
-  <!-- <Login></Login> -->
-  <AccountPage></AccountPage>
+  <Login></Login>
 {/if}
 
 {#if active == 'About Us'}
