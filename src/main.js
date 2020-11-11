@@ -7,6 +7,7 @@ const app = new App({
 	}
 });
 
+document.body.style.margin = "0px";
 window.app = app;
 
 export default app;

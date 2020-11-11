@@ -1,32 +1,38 @@
 <script>
 	import Login from "./Login.svelte";
-	import TabBar from "./TabBar.svelte";
-	import Signup from "./Signup.svelte";
 
-	let tabItems = [
-    { label: "Login", value: 1 },
-    { label: "About Us", value: 2 },
-	{ label: "Contact Us", value: 3 }
-  	];
-	let currentTab;
-	  
-	function print(currentTab) {
-		alert(currentTab);
-	}
+	import Tab, {Icon, Label} from '@smui/tab';
+	import TabBar from '@smui/tab-bar';
+
+	let active = 'Login';
+	let tabItems = ["Login", "About Us", "Contact Us"];
+
 </script>
 
-<TabBar bind:activeTabValue={currentTab} items={tabItems}/>
+<style>
+	.header {
+		margin: 0px;
+		padding: 0px 10px 10px;
+		background-color: #25cbea;
+	}
+</style>
 
-<code class="language-text"></code>
+<div class="header">
+	<TabBar style="max-width: 500px;" tabs={tabItems} let:tab bind:active>
+		<Tab style="color: white;"{tab}>
+		<Label style="color: white;">{tab}</Label>
+		</Tab>
+	</TabBar>
+</div>
 
-{#if 1 === currentTab}
+{#if active == 'Login'}
   <Login></Login>
 {/if}
 
-{#if 2 === currentTab}
+{#if active == 'About Us'}
 	About Us Component goes here
 {/if}
 
-{#if 3 === currentTab}
+{#if active == 'Contact Us'}
 	Contact Us Component goes here
 {/if}
