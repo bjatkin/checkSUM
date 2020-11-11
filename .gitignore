@@ -134,6 +134,6 @@ dmypy.json
 # Node files
 node_modules
 
-# Bundle file
+# Webpack bundles
 public/bundle.css
 public/bundle.js

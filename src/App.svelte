@@ -1,14 +1,38 @@
 <script>
-	import Button from "./Button.svelte";
-	export let name;
+	import Login from "./Login.svelte";
+
+	import Tab, {Icon, Label} from '@smui/tab';
+	import TabBar from '@smui/tab-bar';
+
+	let active = 'Login';
+	let tabItems = ["Login", "About Us", "Contact Us"];
+
 </script>
 
 <style>
-	/* h1 {
-		color: purple;
-	} */
+	.header {
+		margin: 0px;
+		padding: 0px 10px 10px;
+		background-color: #25cbea;
+	}
 </style>
 
-<h1>Hello {name}!</h1>
+<div class="header">
+	<TabBar style="max-width: 500px;" tabs={tabItems} let:tab bind:active>
+		<Tab style="color: white;"{tab}>
+		<Label style="color: white;">{tab}</Label>
+		</Tab>
+	</TabBar>
+</div>
 
-<Button title="Hello computer"></Button>
+{#if active == 'Login'}
+  <Login></Login>
+{/if}
+
+{#if active == 'About Us'}
+	About Us Component goes here
+{/if}
+
+{#if active == 'Contact Us'}
+	Contact Us Component goes here
+{/if}
