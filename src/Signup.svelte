@@ -50,6 +50,16 @@
             <Textfield style="width: 100%;" variant="outlined" bind:value={user.birthCity} label="City of Birth*" input$aria-controls="helper-text-outlined-a" input$aria-describedby="helper-text-outlined-a" />
             <HelperText id="helper-text-outlined-a">Enter Your City Of Birth</HelperText>
         </div>
+
+        <div class="center">
+            <Select style="width: 100%;" variant="outlined" bind:value={user.birthState} label="State of Birth*" input$aria-controls="helper-text-outlined-a" input$aria-describedby="helper-text-outlined-a">
+                <Option value=""></Option>
+                {#each states as state}
+                    <Option value={state} selected={user.birthState === state}>{state}</Option>
+                {/each}
+            </Select>
+            <HelperText id="helper-text-outlined-a">Enter Your State Of Birth</HelperText>
+        </div>
         <hr>
         <div class="right">
             <Button color="secondary" style="width: 35%;" on:click={() => user.firstpage = true}><Label>Back</Label></Button>
@@ -58,10 +68,64 @@
     </div>
 {/if}
 
+
+
 <script>
     import Textfield from '@smui/textfield';
     import HelperText from '@smui/textfield/helper-text/index';
     import Button, {Label} from '@smui/button';
+    import Select, {Option} from '@smui/select';
+
+    let states = ['Alabama',
+        'Alaska',
+        'Arizona',
+        'Arkansas',
+        'California',
+        'Colorado',
+        'Connecticut',
+        'Delaware',
+        'Florida',
+        'Georgia',
+        'Hawaii',
+        'Idaho',
+        'Illinois',
+        'Indiana',
+        'Iowa',
+        'Kansas',
+        'Kentucky',
+        'Louisiana',
+        'Maine',
+        'Maryland',
+        'Massachusetts',
+        'Michigan',
+        'Minnesota',
+        'Mississippi',
+        'Missouri',
+        'Montana',
+        'Nebraska',
+        'Nevada',
+        'New Hampshire',
+        'New Jersey',
+        'New Mexico',
+        'New York',
+        'North Carolina',
+        'North Dakota',
+        'Ohio',
+        'Oklahoma',
+        'Oregon',
+        'Pennsylvania',
+        'Rhode Island',
+        'South Carolina',
+        'South Dakota',
+        'Tennessee',
+        'Texas',
+        'Utah',
+        'Vermont',
+        'Virginia',
+        'Washington',
+        'West Virginia',
+        'Wisconsin',
+        'Wyoming'];
 
     let user = { 
         firstpage: true,
@@ -73,6 +137,7 @@
         lastName: '',
         birthdate: '',
         birthCity: '',
+        birthState: '',
     };
 
     function createAccount() {
@@ -82,7 +147,8 @@
             "\nFirst Name: "+user.firstName+
             "\nLast Name: "+user.lastName+
             "\nBirth Date: "+user.birthdate+
-            "\nBirth City: "+user.birthCity
+            "\nBirth City: "+user.birthCity+
+            "\nBirth State: "+user.birthState
         );
     }
 </script>
