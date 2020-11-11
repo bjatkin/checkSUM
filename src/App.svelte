@@ -31,6 +31,7 @@
 
 {#if active == 'About Us'}
 	About Us Component goes here
+	<QR></QR>
 {/if}
 
 {#if active == 'Contact Us'}
