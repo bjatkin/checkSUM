@@ -4,8 +4,9 @@
 
 	import Tab, {Icon, Label} from '@smui/tab';
 	import TabBar from '@smui/tab-bar';
+	import AccountPage from "./AccountPage.svelte";
 
-	let active = 'Login';
+	export let active = 'Login';
 	let tabItems = ["Login", "About Us", "Contact Us"];
 
 </script>
@@ -27,7 +28,8 @@
 </div>
 
 {#if active == 'Login'}
-  <Login></Login>
+  <!-- <Login></Login> -->
+  <AccountPage></AccountPage>
 {/if}
 
 {#if active == 'About Us'}
