@@ -4,7 +4,7 @@
 
 	import Tab, {Icon, Label} from '@smui/tab';
 	import TabBar from '@smui/tab-bar';
-
+	import QR from './QRCode.svelte';
 	let active = 'Login';
 	let tabItems = ["Login", "About Us", "Contact Us"];
 
@@ -32,6 +32,7 @@
 
 {#if active == 'About Us'}
 	About Us Component goes here
+	<QR></QR>
 {/if}
 
 {#if active == 'Contact Us'}
