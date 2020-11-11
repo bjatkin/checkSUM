@@ -26,12 +26,14 @@
     "sass": "^1.28.0",
     "sass-loader": "^10.0.5",
     "style-loader": "^2.0.0",
+    "svelte-material-ui": "^1.0.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
     "optimize-css-assets-webpack-plugin": "^5.0.4",
     "svelte": "^3.29.4",
-    "svelte-loader": "^2.13.6"
+    "svelte-loader": "^2.13.6",
+    "svelte-qrcode": "0.0.2"
   }
 }
