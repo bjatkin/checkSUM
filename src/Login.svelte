@@ -63,38 +63,40 @@
         </svg>
     </div>
     <div class="center">
-        <h1>Sign In</h1>
-    </div>
-    <div class="center">
-        <Textfield 
-            type="email" 
-            variant="outlined"
-            bind:value={userEmail} 
-            label="Email *" 
-            input$aria-controls="helper-text-outlined-a" 
-            input$aria-describedby="helper-text-outlined-a" 
-            style="width: 100%"
-            />
-        <HelperText id="helper-text-outlined-a">Enter Your Email</HelperText>
-    </div>
-    <div class="center">
-        <Textfield 
-            type="password" 
-            variant="outlined"
-            bind:value={userPassword}
-            label="Password *"
-            input$aria-controls="helper-text-outlined-a"
-            input$aria-describedby="helper-text-outlined-a"
-            style="width: 100%"
-            />
-        <HelperText id="helper-text-outlined-a">Enter Your Password</HelperText>
-    </div>
-    <div class="center">
-    <Button variant="raised" style="width: 100%; color: white;" on:click={() => alert("Email: " + userEmail + "\nPassword: " + userPassword)}><Label>SIGN IN</Label></Button>
+        <div class="mdc-typography--headline4 theme-primary-color">Sign In</div>
     </div>
     <div>
-    <Button color="secondary" on:click={() => alert("Forgot Password!!")}><Label>forgot password?</Label></Button>
-    <Button color="secondary" on:click={() => alert("Creating An account")}><Label>Don't have an account?<br/>Sign Up</Label></Button>
+        <div class="center">
+            <Textfield 
+                type="email" 
+                variant="outlined"
+                bind:value={userEmail} 
+                label="Email *" 
+                input$aria-controls="helper-text-outlined-a" 
+                input$aria-describedby="helper-text-outlined-a" 
+                style="width: 100%"
+                />
+            <HelperText id="helper-text-outlined-a">Enter Your Email</HelperText>
+        </div>
+        <div class="center">
+            <Textfield 
+                type="password" 
+                variant="outlined"
+                bind:value={userPassword}
+                label="Password *"
+                input$aria-controls="helper-text-outlined-a"
+                input$aria-describedby="helper-text-outlined-a"
+                style="width: 100%"
+                />
+            <HelperText id="helper-text-outlined-a">Enter Your Password</HelperText>
+        </div>
+        <div class="center">
+            <Button variant="raised" style="width: 100%; color: white;" on:click={() => alert("Email: " + userEmail + "\nPassword: " + userPassword)}><Label>SIGN IN</Label></Button>
+        </div>
+        <div>
+            <Button color="secondary" on:click={() => alert("Forgot Password!!")}><Label>forgot password?</Label></Button>
+            <Button color="secondary" on:click={() => alert("Creating An account")}><Label>Don't have an account?<br/>Sign Up</Label></Button>
+        </div>
     </div>
 </div>
 
@@ -111,10 +113,10 @@
         margin-top: 30px;
     }
 
-    h1 {
+    /* h1 {
         font-family: Roboto, sans-serif;
         color: #e89a40;
-    }
+    } */
 
     .parent {
         text-align: center;
