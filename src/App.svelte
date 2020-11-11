@@ -3,7 +3,7 @@
 
 	import Tab, {Icon, Label} from '@smui/tab';
 	import TabBar from '@smui/tab-bar';
-
+	import QR from './QRCode.svelte';
 	let active = 'Login';
 	let tabItems = ["Login", "About Us", "Contact Us"];
 
