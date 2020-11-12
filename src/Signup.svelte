@@ -140,17 +140,7 @@
         birthState: '',
     };
 
-    function createAccount() {
-        alert("Created Account with"+
-            "\nEmail: "+user.email+
-            "\nPassword: "+user.password+
-            "\nFirst Name: "+user.firstName+
-            "\nLast Name: "+user.lastName+
-            "\nBirth Date: "+user.birthdate+
-            "\nBirth City: "+user.birthCity+
-            "\nBirth State: "+user.birthState
-        );
-    }
+    export let createAccount = () => {};
 </script>
 
 <style>

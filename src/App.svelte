@@ -6,9 +6,39 @@
 	import TabBar from '@smui/tab-bar';
 	import QR from './QRCode.svelte';
 	import Signup from "./Signup.svelte";
+	import MyAccount from "./AccountPage.svelte";
 
-	export let active = 'Login';
-	let tabItems = ["Login", "About Us", "Contact Us"];
+	let loginActive = "Login";
+	let loginTabItems = ["Login", "About Us", "Contact Us"];
+
+	let signupActive = "Sign Up";
+	let signupTabItems = ["Sign Up", "About Us", "Contact Us"];
+
+	let myAccountActive = "My Account";
+	let myAccountTabItems = ["My Account", "About Us", "Contact Us"];
+
+	let activePage = "Login";
+
+	let login = () => {
+		/* 
+			Do login stuff here like verify a username and password	
+		*/
+		myAccountActive = "My Account";
+		activePage = "My Account";
+	}
+
+	let signup = () => {
+		signupActive = "Sign Up";
+		activePage = "Sign Up";
+	}
+
+	let createAccount = () => {
+		/*
+			Do signup stuff here like set up a user account
+		*/
+		myAccountActive = "My Account";
+		activePage = "My Account";
+	} 
 
 </script>
 
@@ -21,7 +51,7 @@
 </style>
 
 <div class="header">
-		{#if active != 'Login'}
+		{#if !(activePage == "Login" && loginActive == "Login") }
 			<div style="width:175px; float: left;">
 				<svg style="width:175px; height: 50px;" viewBox="0 0 210 60">
 					<g id="layer1">
@@ -62,22 +92,46 @@
 			</div>
 		{/if}
 		<div>
-			<TabBar style="max-width: 700px;" tabs={tabItems} let:tab bind:active>
-				<Tab style="color: white;"{tab}>
-					<Label style="color: white;">{tab}</Label>
-				</Tab>
-			</TabBar>
+			{#if activePage == "Login"}
+				<TabBar style="max-width: 700px;" tabs={loginTabItems} let:tab bind:active={loginActive}>
+					<Tab on:click={() => console.log(activePage)} style="color: white;" {tab}>
+						<Label on:click={() => console.log(activePage)} style="color: white;">{tab}</Label>
+					</Tab>
+				</TabBar>
+			{/if}
+			{#if activePage == "Sign Up"}
+				<TabBar style="max-width: 700px;" tabs={signupTabItems} let:tab bind:active={signupActive}>
+					<Tab on:click={() => console.log(activePage)} style="color: white;" {tab}>
+						<Label on:click={() => console.log(activePage)} style="color: white;">{tab}</Label>
+					</Tab>
+				</TabBar>
+			{/if}
+			{#if activePage == "My Account"}
+				<TabBar style="max-width: 700px;" tabs={myAccountTabItems} let:tab bind:active={myAccountActive}>
+					<Tab on:click={() => console.log(activePage)} style="color: white;" {tab}>
+						<Label id="testThis" on:click={() => console.log(activePage)} style="color: white;">{tab}</Label>
+					</Tab>
+				</TabBar>
+			{/if}
 		</div>
 </div>
 
-{#if active == 'Login'}
-	<Login></Login>
+{#if activePage == "Login" && loginActive == "Login" }
+	<Login login={login} signup={signup}></Login>
 {/if}
 
-{#if active == 'About Us'}
+{#if loginActive == "About Us" || signupActive == "About Us" || myAccountActive == "About Us"}
 	<About></About>
 {/if}
 
-{#if active == 'Contact Us'}
+{#if loginActive == "Contact Us" || signupActive == "Contact Us" || myAccountActive == "Contact Us"}
 	<Contact></Contact>
+{/if}
+
+{#if activePage == "Sign Up" && signupActive == "Sign Up"}
+	<Signup createAccount={createAccount}></Signup>
+{/if}
+
+{#if activePage == "My Account" && myAccountActive == "My Account"}
+	<MyAccount></MyAccount>
 {/if}

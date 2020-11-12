@@ -91,11 +91,11 @@
             <HelperText id="helper-text-outlined-a">Enter Your Password</HelperText>
         </div>
         <div class="center">
-            <Button variant="raised" style="width: 100%; color: white;" on:click={() => alert("Email: " + userEmail + "\nPassword: " + userPassword)}><Label>SIGN IN</Label></Button>
+            <Button variant="raised" style="width: 100%; color: white;" on:click={login}><Label>SIGN IN</Label></Button>
         </div>
         <div>
             <Button color="secondary" on:click={() => alert("Forgot Password!!")}><Label>forgot password?</Label></Button>
-            <Button color="secondary" on:click={() => alert("Creating An account")}><Label>Don't have an account?<br/>Sign Up</Label></Button>
+            <Button color="secondary" on:click={signup}><Label>Don't have an account?<br/>Sign Up</Label></Button>
         </div>
     </div>
 </div>
@@ -104,6 +104,9 @@
     import Button, {Label}  from "@smui/button";
     import Textfield from '@smui/textfield';
     import HelperText from '@smui/textfield/helper-text/index';
+
+    export let login = () => {};
+    export let signup = () => {};
     let userEmail = '';
     let userPassword = '';
 </script>
