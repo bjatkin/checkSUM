@@ -7,7 +7,7 @@
 	import QR from './QRCode.svelte';
 	import Signup from "./Signup.svelte";
 
-	let active = 'Login';
+	export let active = 'Login';
 	let tabItems = ["Login", "About Us", "Contact Us"];
 
 </script>
