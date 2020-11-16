@@ -11,7 +11,7 @@
 
     <hr>
 
-    <Verifyable label="Employment: Refer.io" pCount="1"></Verifyable>
+    <!--Verifyable label="Employment: Refer.io" pCount="1"></Verifyable-->
 </div>
 
 <script>

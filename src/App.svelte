@@ -4,7 +4,6 @@
 	import About from "./AboutUsPage.svelte";
 	import Tab, {Icon, Label} from '@smui/tab';
 	import TabBar from '@smui/tab-bar';
-	import QR from './QRCode.svelte';
 	import Signup from "./Signup.svelte";
 	import MyAccount from "./AccountPage.svelte";
 

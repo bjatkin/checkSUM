@@ -8,27 +8,56 @@
     </div>
     <div class="third">
         {#if !tokenGenerated}
-            <Button variant="raised" style="color: white;" disabled={pCount<3} on:click={generateToken}><Label>Generate Verification Token</Label></Button>
-        {/if}
-        {#if tokenGenerated}
-            <Button class="theme-error-color" on:click={cancleToken}><Label>Cancle Token</Label></Button>
+            <Button variant="raised" style="color: white;" disabled={pCount<3} on:click={generate}><Label>Generate Verification Token</Label></Button>
         {/if}
     </div>
 </div>
 {#if tokenGenerated}
-    <div class="center" style="height: 60px;">
-        <div class="half" use:lock>
-            <Textfield id="readonly" variant="outlined" bind:value={verificationCode} label="Verification Token"/>
-        </div>
-        <div class="half"><Button variant="raised" style="color: white; margin-top: 10px;" on:click={copyCode}><Label>Copy To Clipboard</Label></Button></div>
+    <div class='title'>
+        {#if !QRcodeGenerated && wantsQRCode}
+            <p class="mdc-typography--headline5 theme-primary-color">
+                Create QR code for on-the-go codes?
+            </p>
+            <div class="center">
+                <Button style="width: 60%; color: white;" on:click={generateQRCode} variant="raised"><Label>Yes</Label></Button>
+                <Button color="secondary" style="width: 35%;" on:click={noQRCode}><Label>No</Label></Button>
+            </div>
+        {/if}
     </div>
+
+    {#if QRcodeGenerated && !scanned}
+        <br>
+        <br>
+        <div class="center">
+            <QrCode value = {otpauth}></QrCode>
+        </div>
+        <div>
+            <Button style="width: 60%; color: white;" on:click={generateToken} variant="raised"><Label>I have scanned the QR code</Label></Button>
+        </div>
+    {/if}
+
+
+    {#if scanned}
+        <div class="center" style="height: 60px;">
+            <div class="half" use:lock>
+                <Textfield id="readonly" variant="outlined" bind:value={verificationCode} label="Verification Token"/>
+            </div>
+            <div class="half"><Button variant="raised" style="color: white; margin-top: 10px;" on:click={copyCode}><Label>Copy To Clipboard</Label></Button></div>
+        </div>
+    {/if}
+    
 {/if}
 
 <script>
     import Button, {Label}  from "@smui/button";
     import LinearProgress from '@smui/linear-progress';
     import Textfield from '@smui/textfield';
-
+    import QrCode from 'svelte-qrcode';
+    import { authenticator } from 'otplib';
+    let user = 'user@email.tld'; //need this to change to the user's email address
+    const service = 'checkSUM';
+    let _secret;//This secret would need to be stored in the database so that the token can be recreated
+    //Or we store the token so then we don't need to know the information of the users trying to log in. Just if the code is contained in a certain greater than 13 age. I say we do this of course it would always be changing tho so maybe we do it your way when generate code is clicked but we use the tried and test functions of TOTP to make the token. Or we make the codes change every hour instead of every 30sec like they do with TOTP
     export let label = "Birth Date: MM/DD/YYYY";
     export let pCount = 0;
     let progressMsgs = [
@@ -40,6 +69,12 @@
 
     let verificationCode = "";
     let tokenGenerated = false;
+    let QRcodeGenerated = false;
+    let wantsQRCode = true;
+    let scanned = false;
+    let otpauth;
+    let seconds;
+    let seconds2;
 
     export function updateProgress(state) {
         if (state > 0 && state < 4) {
@@ -53,21 +88,30 @@
 			e.setAttribute("readonly", "true")
 		);
     }
-    function generateToken() {
-        let ref = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        let first = ""
-        let last = ""
-        for (let i = 0; i < 4; i++) {
-            first += ref.charAt(Math.floor((Math.random() * ref.length)));
-            last += ref.charAt(Math.floor((Math.random() * ref.length)));
-        }
-        verificationCode = first+"-"+last
+
+    let generateQRCode = () => {
+        _secret = authenticator.generateSecret();
+        otpauth = authenticator.keyuri(user, service, _secret);
+        QRcodeGenerated = true;
+    }
+
+    let noQRCode = () => {
+        wantsQRCode = false;
+        scanned = true;
+        generateToken();
+    }
+
+    let generate = () => {
         tokenGenerated = true;
     }
 
-    function cancleToken() {
-        verificationCode = ""
-        tokenGenerated = false;
+    let generateToken = () => {
+        if (!wantsQRCode) {
+            _secret = authenticator.generateSecret();
+            verificationCode = authenticator.generate(_secret);
+        }
+        scanned = true;
+        setInterval(function(){verificationCode = authenticator.generate(_secret)}, 1000);
     }
 
     function copyCode() {
@@ -95,5 +139,11 @@
     .third {
         width: 33%;
         float: left;
+    }
+
+    .title {
+        margin: auto;
+        text-align: center;
+        max-width: 800px;
     }
 </style>
