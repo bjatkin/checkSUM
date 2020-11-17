@@ -66,33 +66,38 @@
         <div class="mdc-typography--headline4 theme-primary-color">Sign In</div>
     </div>
     <div>
-        <div class="center">
-            <Textfield 
-                type="email" 
-                variant="outlined"
-                bind:value={userEmail} 
-                label="Email *" 
-                input$aria-controls="helper-text-outlined-a" 
-                input$aria-describedby="helper-text-outlined-a" 
-                style="width: 100%"
-                />
-            <HelperText id="helper-text-outlined-a">Enter Your Email</HelperText>
-        </div>
-        <div class="center">
-            <Textfield 
-                type="password" 
-                variant="outlined"
-                bind:value={userPassword}
-                label="Password *"
-                input$aria-controls="helper-text-outlined-a"
-                input$aria-describedby="helper-text-outlined-a"
-                style="width: 100%"
-                />
-            <HelperText id="helper-text-outlined-a">Enter Your Password</HelperText>
-        </div>
-        <div class="center">
-            <Button variant="raised" style="width: 100%; color: white;" on:click={login}><Label>SIGN IN</Label></Button>
-        </div>
+        <form action="{% url 'login' %}" method='GET'>
+            {% csrf_token %}
+            <div class="center">
+                <Textfield 
+                    name = email
+                    type="email" 
+                    variant="outlined"
+                    bind:value={userEmail} 
+                    label="Email *" 
+                    input$aria-controls="helper-text-outlined-a" 
+                    input$aria-describedby="helper-text-outlined-a" 
+                    style="width: 100%"
+                    />
+                <HelperText id="helper-text-outlined-a">Enter Your Email</HelperText>
+            </div>
+            <div class="center">
+                <Textfield 
+                    name = password
+                    type="password" 
+                    variant="outlined"
+                    bind:value={userPassword}
+                    label="Password *"
+                    input$aria-controls="helper-text-outlined-a"
+                    input$aria-describedby="helper-text-outlined-a"
+                    style="width: 100%"
+                    />
+                <HelperText id="helper-text-outlined-a">Enter Your Password</HelperText>
+            </div>
+            <div class="center">
+                <Button variant="raised" style="width: 100%; color: white;" on:click={login}><Label>SIGN IN</Label></Button>
+            </div>
+        </form>
         <div>
             <Button color="secondary" on:click={() => alert("Forgot Password!!")}><Label>forgot password?</Label></Button>
             <Button color="secondary" on:click={signup}><Label>Don't have an account?<br/>Sign Up</Label></Button>
