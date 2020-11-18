@@ -28,7 +28,7 @@
 				"Content-Type": "application/json"
 			},
 			body: JSON.stringify({
-				type: dataGET,
+				type: "dataGET",
 				email: userEmail,
 				password: userPassword
 			})
@@ -46,7 +46,7 @@
 				"Content-Type": "application/json"
 			},
 			body: JSON.stringify({
-				type: dataPOST,
+				type: "dataPOST",
 				email: user.email,
 				password: user.password,
 				fname: user.firstName,

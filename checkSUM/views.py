@@ -24,27 +24,45 @@ def serve_file(file, mime_type):
     return HttpResponse(page.read(), content_type=mime_type)
 
 def database(request):
+    print(request.body)
+    print('HELLO\n\n\n\n\n\n')
     body_data = json.loads(request.body)
     dataType = body_data['type']
     print("DATA TYPE :", dataType)
     print('\n\n\n\n\n\n')
     print("request ", body_data)
 
-    if (dataType == 'dataGet'):
+    if (dataType == 'dataGET'):
         email = body_data["email"]
         password = body_data["password"]
-        u = User.objects.get(user_email=email) #Not really an error. Is created once it is running
-        print("User pass: ", u.password)
+        try:
+            u = User.objects.get(user_email=email) #Not really an error. Is created once it is running
+            if (u.password == password):
+                print("User email: ", u.user_email)
+                print("User pass: ", u.password)
+                print(u.first_name, u.last_name)
+            else:
+                print("Wrong password")
+        except:
+            print('No user')
+        
 
-    if (dataType == 'dataPost'):
+    if (dataType == 'dataPOST'):
         email = body_data['email']
-        password = body_data['password']
-        fname = body_data['fname']
-        lname = body_data['lname']
-        bday = body_data['bday']
-        bcity = body_data['bcity']
-        bstate = body_data['bstate']
-        s = User(user_email=email, password=password, first_name=fname, last_name=lname, birthday=bday, birth_city=bcity, birth_state=bstate)
-        s.save() #Saves into the database need to figure out how to get
 
-    return HttpResponse("success")
+        try:
+            u = User.objects.get(user_email=email) #Not really an error. Is created once it is running
+            print('User already exists')
+            print("Email already registered")
+        except:
+            password = body_data['password']
+            fname = body_data['fname']
+            lname = body_data['lname']
+            bday = body_data['bday']
+            bcity = body_data['bcity']
+            bstate = body_data['bstate']
+            s = User(user_email=email, password=password, first_name=fname, last_name=lname, birthday=bday, birth_city=bcity, birth_state=bstate)
+            s.save()
+            print('Registered!')
+            u = User.objects.get(user_email=email) #Not really an error. Is created once it is running
+            print(u.first_name, u.last_name)
