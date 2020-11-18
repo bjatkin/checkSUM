@@ -22,13 +22,13 @@
 	let user;
 
 	async function doGet() {
-		alert("Email: " + userEmail + " Pass: " + userPassword);
 		fetch(`http://localhost:8080/checkSUM/database/`, {
 			method: 'POST',
 			headers: {
 				"Content-Type": "application/json"
 			},
 			body: JSON.stringify({
+				type: dataGET,
 				email: userEmail,
 				password: userPassword
 			})
@@ -40,13 +40,13 @@
 	}
 
 	async function doPost() {
-		alert("Email: " + user.email + " Pass: " + user.password);
-		databaseData = await fetch(`http://127.0.0.1:8080/checkSUM/database/`, {
+		fetch(`http://localhost:8080/checkSUM/database/`, {
 			method: 'POST',
 			headers: {
 				"Content-Type": "application/json"
 			},
 			body: JSON.stringify({
+				type: dataPOST,
 				email: user.email,
 				password: user.password,
 				fname: user.firstName,
@@ -55,6 +55,10 @@
 				bcity: user.birthCity,
 				bstate: user.birthState
 			})
+		}).
+		then(resp => resp.text()).
+		then(resp => {
+			console.log(resp);
 		})
 	}
 

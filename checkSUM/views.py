@@ -23,30 +23,28 @@ def serve_file(file, mime_type):
     page = open(file)
     return HttpResponse(page.read(), content_type=mime_type)
 
-def dataBase(request):
+def database(request):
     body_data = json.loads(request.body)
-    print("request", body_data)
-    email = body_data["email"]
-    password = body_data["password"]
-    print(email)
-    print(password)
-    # if request.method == 'GET':
-        # email = request.GET.get('email')
-        # password = request.GET.get('password')
-        # print(email)
-        # print(password)
-        #s = User(user_email=email, password=password)
-        # u = User.objects.get(user_email=email) #Not really an error. Is created once it is running
-        # print(u.password)
-    # if request.method == 'POST':
-    #     email = request.POST.get('email')
-    #     password = request.POST.get('password')
-    #     fname = request.POST.get('fname')
-    #     lname = request.POST.get('lname')
-    #     bday = request.POST.get('bday')
-    #     bcity = request.POST.get('bcity')
-    #     bstate = request.POST.get('bstate')
+    dataType = body_data['type']
+    print("DATA TYPE :", dataType)
+    print('\n\n\n\n\n\n')
+    print("request ", body_data)
 
-    #     s = User(user_email=email, password=password, first_name=fname, last_name=lname, birthday=bday, birth_city=bcity, birth_state=bstate)
-    #     s.save() #Saves into the database need to figure out how to get
-    return HttpResponse("success") 
+    if (dataType == 'dataGet'):
+        email = body_data["email"]
+        password = body_data["password"]
+        u = User.objects.get(user_email=email) #Not really an error. Is created once it is running
+        print("User pass: ", u.password)
+
+    if (dataType == 'dataPost'):
+        email = body_data['email']
+        password = body_data['password']
+        fname = body_data['fname']
+        lname = body_data['lname']
+        bday = body_data['bday']
+        bcity = body_data['bcity']
+        bstate = body_data['bstate']
+        s = User(user_email=email, password=password, first_name=fname, last_name=lname, birthday=bday, birth_city=bcity, birth_state=bstate)
+        s.save() #Saves into the database need to figure out how to get
+
+    return HttpResponse("success")
