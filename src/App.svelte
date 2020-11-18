@@ -20,22 +20,30 @@
     let userPassword = '';
 	let activePage = "Login";
 	let user;
+	let databaseData;
 
 	async function doGet() {
 		alert("Email: " + userEmail + " Pass: " + userPassword);
-		fetch('checkSUM/database', {
+		databaseData = await fetch(`http://127.0.0.1:8080/checkSUM/database/`, {
 			method: 'GET',
+			headers: {
+				"Content-Type": "application/json"
+			},
 			body: JSON.stringify({
 				email: userEmail,
 				password: userPassword
 			})
 		})
+		//alert(databaseData)
 	}
 
 	async function doPost() {
 		alert("Email: " + user.email + " Pass: " + user.password);
-		fetch('checkSUM/database', {
+		databaseData = await fetch(`http://127.0.0.1:8080/checkSUM/database/`, {
 			method: 'POST',
+			headers: {
+				"Content-Type": "application/json"
+			},
 			body: JSON.stringify({
 				email: user.email,
 				password: user.password,
