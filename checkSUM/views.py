@@ -23,8 +23,7 @@ def serve_file(file, mime_type):
     return HttpResponse(page.read(), content_type=mime_type)
 
 def dataBase(request):
-    print('HELLO!!!!') ####Not being called??
-    print(request.method)
+    print('HELLO!!!!', request) ####Not being called??
     if request.method == 'GET':
         email = request.GET.get('email')
         password = request.GET.get('password')

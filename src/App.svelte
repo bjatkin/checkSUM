@@ -24,8 +24,8 @@
 
 	async function doGet() {
 		alert("Email: " + userEmail + " Pass: " + userPassword);
-		databaseData = await fetch(`http://127.0.0.1:8080/checkSUM/database/`, {
-			method: 'GET',
+		fetch(`http://localhost:8080/checkSUM/database/`, {
+			method: 'POST',
 			headers: {
 				"Content-Type": "application/json"
 			},
@@ -33,6 +33,10 @@
 				email: userEmail,
 				password: userPassword
 			})
+		}).
+		then(resp => resp.text()).
+		then(resp => {
+			console.log(resp);
 		})
 		//alert(databaseData)
 	}
