@@ -127,7 +127,7 @@
         'Wisconsin',
         'Wyoming'];
 
-    let user = { 
+    export let user = { 
         firstpage: true,
         email: '',
         confirmEmail: '',

@@ -7,6 +7,7 @@
 	import Signup from "./Signup.svelte";
 	import MyAccount from "./AccountPage.svelte";
 
+
 	let loginActive = "Login";
 	let loginTabItems = ["Login", "About Us", "Contact Us"];
 
@@ -15,8 +16,37 @@
 
 	let myAccountActive = "My Account";
 	let myAccountTabItems = ["My Account", "About Us", "Contact Us"];
-
+	let userEmail = '';
+    let userPassword = '';
 	let activePage = "Login";
+	let user;
+
+	async function doGet() {
+		alert("Email: " + userEmail + " Pass: " + userPassword);
+		fetch('checkSUM/database', {
+			method: 'GET',
+			body: JSON.stringify({
+				email: userEmail,
+				password: userPassword
+			})
+		})
+	}
+
+	async function doPost() {
+		alert("Email: " + user.email + " Pass: " + user.password);
+		fetch('checkSUM/database', {
+			method: 'POST',
+			body: JSON.stringify({
+				email: user.email,
+				password: user.password,
+				fname: user.firstName,
+				lname: user.lastName,
+				bday: user.birthdate,
+				bcity: user.birthCity,
+				bstate: user.birthState
+			})
+		})
+	}
 
 	let login = () => {
 		/* 
@@ -24,6 +54,7 @@
 		*/
 		myAccountActive = "My Account";
 		activePage = "My Account";
+		doGet();
 	}
 
 	let signup = () => {
@@ -37,6 +68,7 @@
 		*/
 		myAccountActive = "My Account";
 		activePage = "My Account";
+		doPost();
 	} 
 
 </script>
@@ -116,7 +148,7 @@
 </div>
 
 {#if activePage == "Login" && loginActive == "Login" }
-	<Login login={login} signup={signup}></Login>
+	<Login login={login} signup={signup} bind:userEmail={userEmail} bind:userPassword={userPassword}></Login>
 {/if}
 
 {#if loginActive == "About Us" || signupActive == "About Us" || myAccountActive == "About Us"}
@@ -128,7 +160,7 @@
 {/if}
 
 {#if activePage == "Sign Up" && signupActive == "Sign Up"}
-	<Signup createAccount={createAccount}></Signup>
+	<Signup createAccount={createAccount} bind:user={user}></Signup>
 {/if}
 
 {#if activePage == "My Account" && myAccountActive == "My Account"}

@@ -23,12 +23,16 @@ def serve_file(file, mime_type):
     return HttpResponse(page.read(), content_type=mime_type)
 
 def dataBase(request):
+    print('HELLO!!!!') ####Not being called??
+    print(request.method)
     if request.method == 'GET':
         email = request.GET.get('email')
         password = request.GET.get('password')
         print(email)
         print(password)
-        s = User(user_email=email, password=password)
+        #s = User(user_email=email, password=password)
+        u = User.objects.get(user_email=email) #Not really an error. Is created once it is running
+        print(u.password)
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
