@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from checkSUM.models import User
+import json
 
 MIME_TYPE_HTML = "text/html"
 MIME_TYPE_CSS = "text/css"
@@ -23,24 +24,29 @@ def serve_file(file, mime_type):
     return HttpResponse(page.read(), content_type=mime_type)
 
 def dataBase(request):
-    print('HELLO!!!!', request) ####Not being called??
-    if request.method == 'GET':
-        email = request.GET.get('email')
-        password = request.GET.get('password')
-        print(email)
-        print(password)
+    body_data = json.loads(request.body)
+    print("request", body_data)
+    email = body_data["email"]
+    password = body_data["password"]
+    print(email)
+    print(password)
+    # if request.method == 'GET':
+        # email = request.GET.get('email')
+        # password = request.GET.get('password')
+        # print(email)
+        # print(password)
         #s = User(user_email=email, password=password)
-        u = User.objects.get(user_email=email) #Not really an error. Is created once it is running
-        print(u.password)
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        fname = request.POST.get('fname')
-        lname = request.POST.get('lname')
-        bday = request.POST.get('bday')
-        bcity = request.POST.get('bcity')
-        bstate = request.POST.get('bstate')
+        # u = User.objects.get(user_email=email) #Not really an error. Is created once it is running
+        # print(u.password)
+    # if request.method == 'POST':
+    #     email = request.POST.get('email')
+    #     password = request.POST.get('password')
+    #     fname = request.POST.get('fname')
+    #     lname = request.POST.get('lname')
+    #     bday = request.POST.get('bday')
+    #     bcity = request.POST.get('bcity')
+    #     bstate = request.POST.get('bstate')
 
-        s = User(user_email=email, password=password, first_name=fname, last_name=lname, birthday=bday, birth_city=bcity, birth_state=bstate)
-        s.save() #Saves into the database need to figure out how to get
-    return HttpResponse("hooray") #need to serve_file public index I believe
+    #     s = User(user_email=email, password=password, first_name=fname, last_name=lname, birthday=bday, birth_city=bcity, birth_state=bstate)
+    #     s.save() #Saves into the database need to figure out how to get
+    return HttpResponse("success") 

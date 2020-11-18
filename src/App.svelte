@@ -20,7 +20,6 @@
     let userPassword = '';
 	let activePage = "Login";
 	let user;
-	let databaseData;
 
 	async function doGet() {
 		alert("Email: " + userEmail + " Pass: " + userPassword);
@@ -38,7 +37,6 @@
 		then(resp => {
 			console.log(resp);
 		})
-		//alert(databaseData)
 	}
 
 	async function doPost() {
