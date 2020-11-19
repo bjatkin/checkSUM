@@ -33,29 +33,29 @@
 {#if !user.firstpage}
     <div class="parent">
         <div class="center">
-            <Textfield style="width: 100%;" variant="outlined" bind:value={user.firstName} label="First Name*" input$aria-controls="helper-text-outlined-a" input$aria-describedby="helper-text-outlined-a" />
+            <Textfield style="width: 100%;" variant="outlined" bind:value={user.fname} label="First Name*" input$aria-controls="helper-text-outlined-a" input$aria-describedby="helper-text-outlined-a" />
             <HelperText id="helper-text-outlined-a">Enter Your First Name</HelperText>
         </div>
         <div class="center">
-            <Textfield style="width: 100%;" variant="outlined" bind:value={user.lastName} label="Last Name*" input$aria-controls="helper-text-outlined-a" input$aria-describedby="helper-text-outlined-a" />
+            <Textfield style="width: 100%;" variant="outlined" bind:value={user.lname} label="Last Name*" input$aria-controls="helper-text-outlined-a" input$aria-describedby="helper-text-outlined-a" />
             <HelperText id="helper-text-outlined-a">Enter Your Last Name</HelperText>
         </div>
         <hr>
         <div class="mdc-typography--body1">Birthday</div>
         <div class="center">
-            <Textfield style="width: 100%;" variant="outlined" bind:value={user.birthdate} label="Birthdate: MM/DD/YYYY*" input$aria-controls="helper-text-outlined-a" input$aria-describedby="helper-text-outlined-a" />
+            <Textfield style="width: 100%;" variant="outlined" bind:value={user.bdate} label="Birthdate: MM/DD/YYYY*" input$aria-controls="helper-text-outlined-a" input$aria-describedby="helper-text-outlined-a" />
             <HelperText id="helper-text-outlined-a">MM/DD/YYYY</HelperText>
         </div>
         <div class="center">
-            <Textfield style="width: 100%;" variant="outlined" bind:value={user.birthCity} label="City of Birth*" input$aria-controls="helper-text-outlined-a" input$aria-describedby="helper-text-outlined-a" />
+            <Textfield style="width: 100%;" variant="outlined" bind:value={user.bcity} label="City of Birth*" input$aria-controls="helper-text-outlined-a" input$aria-describedby="helper-text-outlined-a" />
             <HelperText id="helper-text-outlined-a">Enter Your City Of Birth</HelperText>
         </div>
 
         <div class="center">
-            <Select style="width: 100%;" variant="outlined" bind:value={user.birthState} label="State of Birth*" input$aria-controls="helper-text-outlined-a" input$aria-describedby="helper-text-outlined-a">
+            <Select style="width: 100%;" variant="outlined" bind:value={user.bstate} label="State of Birth*" input$aria-controls="helper-text-outlined-a" input$aria-describedby="helper-text-outlined-a">
                 <Option value=""></Option>
                 {#each states as state}
-                    <Option value={state} selected={user.birthState === state}>{state}</Option>
+                    <Option value={state} selected={user.bstate === state}>{state}</Option>
                 {/each}
             </Select>
             <HelperText id="helper-text-outlined-a">Enter Your State Of Birth</HelperText>
@@ -133,11 +133,11 @@
         confirmEmail: '',
         password: '',
         confirmPassword: '',
-        firstName: '',
-        lastName: '',
-        birthdate: '',
-        birthCity: '',
-        birthState: '',
+        fname: '',
+        lname: '',
+        bdate: '',
+        bcity: '',
+        bstate: '',
     };
 
     export let createAccount = () => {};

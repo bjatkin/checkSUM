@@ -2,11 +2,10 @@
 	import Login from "./Login.svelte";
 	import Contact from "./ContactPage.svelte";
 	import About from "./AboutUsPage.svelte";
-	import Tab, {Icon, Label} from '@smui/tab';
+	import Tab, {Label} from '@smui/tab';
 	import TabBar from '@smui/tab-bar';
 	import Signup from "./Signup.svelte";
 	import MyAccount from "./AccountPage.svelte";
-
 
 	let loginActive = "Login";
 	let loginTabItems = ["Login", "About Us", "Contact Us"];
@@ -16,59 +15,89 @@
 
 	let myAccountActive = "My Account";
 	let myAccountTabItems = ["My Account", "About Us", "Contact Us"];
+
 	let userEmail = '';
     let userPassword = '';
 	let activePage = "Login";
 	let user;
+	let firstName = '';
+	let lastName = '';
+	let birthDate = '';
 
-	async function doGet() {
-		fetch(`http://localhost:8080/checkSUM/database/`, {
-			method: 'POST',
+	let baseURL = `http://localhost:8080/checkSUM/`; 
+	let requestLogin = (email, pass) => {
+		return fetch(baseURL+'request_login', {
+			method: "POST",
 			headers: {
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({
-				type: "dataGET",
-				email: userEmail,
-				password: userPassword
-			})
+				email: email,
+				password: pass,
+			}),
 		}).
-		then(resp => resp.text()).
+		then(resp => resp.json()).
 		then(resp => {
-			console.log(resp);
+			if (!resp.success) {
+				throw new Error("Username or Password was not correct");
+			}
+			return resp;
+		})
+	}
+	
+	let createNewAccount = (user) => {
+		if (user.email != user.confirmEmail) {
+			return Promise.reject(new Error("email and confirmaiton email do not match"));
+		}
+		if (user.password != user.confirmPassword) {
+			return Promise.reject(new Error("password and confirmation password do not match"));
+		}
+
+		return fetch(baseURL+'create_account', {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(user),
+		}).
+		then(resp => resp.json()).
+		then(resp => {
+			if (!resp.success) {
+				throw new Error("account already exsists");
+			}
+			return resp;
 		})
 	}
 
-	async function doPost() {
-		fetch(`http://localhost:8080/checkSUM/database/`, {
-			method: 'POST',
+	let getAccountDetails = (email) => {
+		return fetch(baseURL+"get_account_info",{
+			method: "POST",
 			headers: {
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({
-				type: "dataPOST",
-				email: user.email,
-				password: user.password,
-				fname: user.firstName,
-				lname: user.lastName,
-				bday: user.birthdate,
-				bcity: user.birthCity,
-				bstate: user.birthState
-			})
+				email: email,
+			}),
 		}).
-		then(resp => resp.text()).
+		then(resp => resp.json()).
 		then(resp => {
-			console.log(resp);
-		})
+			if (!resp.success) {
+				throw new Error("Could not get account details");
+			}
+			return resp;
+		});
 	}
 
+	let errorMsg = "";
 	let login = () => {
-		/* 
-			Do login stuff here like verify a username and password	
-		*/
-		myAccountActive = "My Account";
-		activePage = "My Account";
-		doGet();
+		requestLogin(userEmail, userPassword).
+		then(() => {
+			gotoMyAccount();
+		}).
+		catch(e => {
+			errorMsg = e.toString();
+			setTimeout(() => {errorMsg = ""}, 2500);
+		});
 	}
 
 	let signup = () => {
@@ -77,13 +106,28 @@
 	}
 
 	let createAccount = () => {
-		/*
-			Do signup stuff here like set up a user account
-		*/
-		myAccountActive = "My Account";
-		activePage = "My Account";
-		doPost();
+		createNewAccount(user).
+		then(() => {
+			gotoMyAccount();
+		}).
+		catch(e => {
+			alert(e.toString());
+		});
 	} 
+
+	let gotoMyAccount = () => {
+		getAccountDetails(userEmail).
+		then(resp => {
+			firstName = resp.first_name
+			lastName = resp.last_name
+			birthDate = resp.birth_date
+			myAccountActive = "My Account";
+			activePage = "My Account";
+		}).
+		catch(e => {
+			alert(e.toString())
+		})
+	}
 
 </script>
 
@@ -162,7 +206,7 @@
 </div>
 
 {#if activePage == "Login" && loginActive == "Login" }
-	<Login login={login} signup={signup} bind:userEmail={userEmail} bind:userPassword={userPassword}></Login>
+	<Login login={login} signup={signup} bind:userEmail={userEmail} bind:userPassword={userPassword} bind:errorMsg={errorMsg}></Login>
 {/if}
 
 {#if loginActive == "About Us" || signupActive == "About Us" || myAccountActive == "About Us"}
@@ -178,5 +222,5 @@
 {/if}
 
 {#if activePage == "My Account" && myAccountActive == "My Account"}
-	<MyAccount></MyAccount>
+	<MyAccount firstName={firstName} lastName={lastName} birthDate={birthDate}></MyAccount>
 {/if}

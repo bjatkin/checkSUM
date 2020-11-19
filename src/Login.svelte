@@ -64,6 +64,7 @@
     </div>
     <div class="center">
         <div class="mdc-typography--headline4 theme-primary-color">Sign In</div>
+        <p class="mdc-typography--body1 theme-error-color">{errorMsg}</p>
     </div>
     <div>
         <div class="center">
@@ -109,6 +110,7 @@
     export let signup = () => {};
     export let userEmail = '';
     export let userPassword = '';
+    export let errorMsg = '';
 </script>
 
 <style>

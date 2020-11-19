@@ -17,9 +17,9 @@
 <script>
     import Verifyable from './Verifyable.svelte';
 
-    let firstName = "First_Name";
-    let lastName = "Last_Name";
-    let birthDate = "MM/DD/YYYY";
+    export let firstName = "First_Name";
+    export let lastName = "Last_Name";
+    export let birthDate = "MM/DD/YYYY";
 
 </script>
 
