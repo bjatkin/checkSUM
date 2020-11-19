@@ -25,7 +25,7 @@
         </div>
         <hr>
         <div class="right">
-            <Button style="color: white; width: 60%;" on:click={() => user.firstpage = false} variant="raised"><Label>Next</Label></Button>
+            <Button style="color: white; width: 60%;" on:click={nextPage} variant="raised"><Label>Next</Label></Button>
         </div>
     </div>
 {/if}
@@ -141,6 +141,52 @@
     };
 
     export let createAccount = () => {};
+
+	let baseURL = `http://localhost:8080/checkSUM/`; 
+    let isEmailAvailable = (email) => {
+        return fetch(baseURL + "is_email_available", {
+            method: "POST",
+            headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				email: email,
+			}),
+		}).
+		then(resp => resp.json()).
+		then(resp => {
+			if (!resp.available) {
+				throw new Error("email is not available");
+			}
+			return resp;
+		});
+    }
+
+    let nextPage= () => {
+        if (user.email != user.confirmEmail) {
+            alert("emails do not match");
+            return;
+        }
+        if (user.password != user.confirmPassword) {
+            alert("passwords do not match");
+            return;
+        }
+        if (user.email == "") {
+            alert("no email entered")
+            return;
+        }
+        if (user.password == "") {
+            alert("no password entered")
+            return;
+        }
+        isEmailAvailable(user.email).
+        then(() => {
+            user.firstpage = false;
+        }).
+        catch(e => {
+            alert(e);
+        })
+    };
 </script>
 
 <style>

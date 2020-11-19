@@ -9,4 +9,5 @@ urlpatterns = [
     path('request_login', views.request_login, name="request_login"),
     path('create_account', views.create_account, name="create_account"),
     path('get_account_info', views.get_account_info, name="get_account_info"),
+    path('is_email_available', views.is_email_available, name="is_email_aailable"),
 ]

@@ -36,6 +36,16 @@ def request_login(request):
     except:
         return HttpResponse("{\"success\": false}")
 
+def is_email_available(request):
+    body_data = json.loads(request.body)
+    email = body_data["email"]
+
+    try:
+        u = User.objects.get(user_email=email)
+        return HttpResponse("{\"available\": false}")
+    except:
+        return HttpResponse("{\"available\": true}")
+
 def create_account(request):
     body_data = json.loads(request.body)
     email = body_data["email"]

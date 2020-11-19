@@ -108,7 +108,11 @@
 	let createAccount = () => {
 		createNewAccount(user).
 		then(() => {
-			gotoMyAccount();
+			firstName = user.fname
+			lastName = user.lname
+			birthDate = user.bdate
+			myAccountActive = "My Account";
+			activePage = "My Account";
 		}).
 		catch(e => {
 			alert(e.toString());
