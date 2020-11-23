@@ -1,5 +1,7 @@
 from django.contrib import admin
 from checkSUM.models import User
-# Register your models here.
+from checkSUM.models import Token
 
+# Register your models here.
 admin.site.register(User)
+admin.site.register(Token)

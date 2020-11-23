@@ -7,7 +7,7 @@
         </div>
     </div>
 
-    <Verifyable label="Birth Date: {birthDate}" pCount="3"></Verifyable>
+    <Verifyable bind:userEmail={userEmail} label="Birth Date: {birthDate}" pCount="3"></Verifyable>
 
     <hr>
 
@@ -20,7 +20,7 @@
     export let firstName = "First_Name";
     export let lastName = "Last_Name";
     export let birthDate = "MM/DD/YYYY";
-
+    export let userEmail = "user@email.tld";
 </script>
 
 <style>

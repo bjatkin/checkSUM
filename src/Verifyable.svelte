@@ -54,10 +54,13 @@
     import Textfield from '@smui/textfield';
     import QrCode from 'svelte-qrcode';
     import { authenticator } from 'otplib';
-    let user = 'user@email.tld'; //need this to change to the user's email address
+
+    export let userEmail = 'user@email.tld'; //need this to change to the user's email address
+
     const service = 'checkSUM';
     let _secret;//This secret would need to be stored in the database so that the token can be recreated
     //Or we store the token so then we don't need to know the information of the users trying to log in. Just if the code is contained in a certain greater than 13 age. I say we do this of course it would always be changing tho so maybe we do it your way when generate code is clicked but we use the tried and test functions of TOTP to make the token. Or we make the codes change every hour instead of every 30sec like they do with TOTP
+
     export let label = "Birth Date: MM/DD/YYYY";
     export let pCount = 0;
     let progressMsgs = [
@@ -91,7 +94,7 @@
 
     let generateQRCode = () => {
         _secret = authenticator.generateSecret();
-        otpauth = authenticator.keyuri(user, service, _secret);
+        otpauth = authenticator.keyuri(userEmail, service, _secret);
         QRcodeGenerated = true;
     }
 
@@ -105,16 +108,25 @@
         tokenGenerated = true;
     }
 
+    let prevVerificationCode = "";
     let generateToken = () => {
         if (!wantsQRCode) {
             _secret = authenticator.generateSecret();
             verificationCode = authenticator.generate(_secret);
+            prevVerificationCode = verificationCode
+            storeSecret(verificationCode).then(resp => console.log(resp));
         }
         scanned = true;
-        setInterval(function(){verificationCode = authenticator.generate(_secret)}, 1000);
+        setInterval(function(){
+            verificationCode = authenticator.generate(_secret)
+            if (prevVerificationCode != verificationCode) {
+                storeSecret(verificationCode).then(resp => console.log(resp));
+                prevVerificationCode = verificationCode;
+            }
+        }, 1000);
     }
 
-    function copyCode() {
+    let copyCode = () => {
         navigator.clipboard.writeText(verificationCode)
             .then(() => {
               alert('code copied to clipboard');
@@ -122,6 +134,21 @@
             .catch(err => {
               alert('there was an error copying  the code: ', err);
             });
+    }
+
+    let storeSecret = (secret) => {
+        let baseURL = `http://localhost:8080/checkSUM/`; 
+        return fetch(baseURL+"store_secret", {
+            method: "POST",
+            headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+                secret: secret,
+                email: userEmail,
+			}),
+        }).
+        then(resp => resp.json());
     }
 </script>
 

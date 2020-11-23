@@ -113,6 +113,7 @@
 			birthDate = user.bdate
 			myAccountActive = "My Account";
 			activePage = "My Account";
+			userEmail = user.email
 		}).
 		catch(e => {
 			alert(e.toString());
@@ -187,22 +188,22 @@
 		<div>
 			{#if activePage == "Login"}
 				<TabBar style="max-width: 700px;" tabs={loginTabItems} let:tab bind:active={loginActive}>
-					<Tab on:click={() => console.log(activePage)} style="color: white;" {tab}>
-						<Label on:click={() => console.log(activePage)} style="color: white;">{tab}</Label>
+					<Tab style="color: white;" {tab}>
+						<Label style="color: white;">{tab}</Label>
 					</Tab>
 				</TabBar>
 			{/if}
 			{#if activePage == "Sign Up"}
 				<TabBar style="max-width: 700px;" tabs={signupTabItems} let:tab bind:active={signupActive}>
-					<Tab on:click={() => console.log(activePage)} style="color: white;" {tab}>
-						<Label on:click={() => console.log(activePage)} style="color: white;">{tab}</Label>
+					<Tab style="color: white;" {tab}>
+						<Label style="color: white;">{tab}</Label>
 					</Tab>
 				</TabBar>
 			{/if}
 			{#if activePage == "My Account"}
 				<TabBar style="max-width: 700px;" tabs={myAccountTabItems} let:tab bind:active={myAccountActive}>
-					<Tab on:click={() => console.log(activePage)} style="color: white;" {tab}>
-						<Label id="testThis" on:click={() => console.log(activePage)} style="color: white;">{tab}</Label>
+					<Tab style="color: white;" {tab}>
+						<Label id="testThis" style="color: white;">{tab}</Label>
 					</Tab>
 				</TabBar>
 			{/if}
@@ -226,5 +227,5 @@
 {/if}
 
 {#if activePage == "My Account" && myAccountActive == "My Account"}
-	<MyAccount firstName={firstName} lastName={lastName} birthDate={birthDate}></MyAccount>
+	<MyAccount bind:userEmail={userEmail} firstName={firstName} lastName={lastName} birthDate={birthDate}></MyAccount>
 {/if}
