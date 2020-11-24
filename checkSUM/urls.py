@@ -12,4 +12,5 @@ urlpatterns = [
     path('is_email_available', views.is_email_available, name="is_email_aailable"),
     path('store_secret', views.store_secret, name="store_secret"),
     path('verify_age', views.verify_age, name="verify_age"),
+    path('request_fname', views.request_fname, name="request_fname"),
 ]

@@ -26,6 +26,19 @@ def serve_file(file, mime_type):
     page = open(file)
     return HttpResponse(page.read(), content_type=mime_type)
 
+def request_fname(request):
+    body_data = json.loads(request.body)
+    email = body_data["email"]
+    try:
+        u = User.objects.get(user_email=email)
+        birth = datetime.strptime(u.birthday, "%m/%d/%Y").timestamp()
+        age = (time.time() - birth)/60/60/24/365
+        if age > 13:
+            return HttpResponse("{\"success\": true, \"first_name\":\""+ u.first_name + "\"}")
+        return fail_response()    
+    except:
+        return fail_response()
+
 def request_login(request):
     body_data = json.loads(request.body)
     email = body_data["email"]
@@ -104,10 +117,10 @@ def verify_age(request):
         birth = datetime.strptime(u.birthday, "%m/%d/%Y").timestamp()
         age = (time.time() - birth)/60/60/24/365
         if age > 13:
-            return HttpResponse("{\"user is 13 or older\": true}")
-        return HttpResponse("{\"user is 13 or older\": false}")
+            return HttpResponse("{\"user_is_13_or_older\": true}")
+        return HttpResponse("{\"user_is_13_or_older\": false}")
     except:
-        return HttpResponse("{\"user is 13 or older\": false}")
+        return HttpResponse("{\"user_is_13_or_older\": false}")
 
 def success_response():
     return HttpResponse("{\"success\": true}")

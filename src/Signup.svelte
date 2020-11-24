@@ -63,7 +63,7 @@
         <hr>
         <div class="right">
             <Button color="secondary" style="width: 35%;" on:click={() => user.firstpage = true}><Label>Back</Label></Button>
-            <Button style="width: 60%; color: white;" on:click={createAccount} variant="raised"><Label>Create Account</Label></Button>
+            <Button style="width: 60%; color: white;" on:click={checkFields} variant="raised"><Label>Create Account</Label></Button>
         </div>
     </div>
 {/if}
@@ -142,6 +142,30 @@
 
     export let createAccount = () => {};
 
+    let checkFields = () => {
+        if (user.fname == "") {
+            alert("No First Name: Please fill out all fields")
+            return;
+        }
+        if (user.lname == "") {
+            alert("No Last Name: Please fill out all fields")
+            return;
+        }
+        if (user.bdate == "") {
+            alert("No Birthdate: Please fill out all fields")
+            return;
+        }
+        if (user.bcity == "") {
+            alert("No Birth City: Please fill out all fields")
+            return;
+        }
+        if (user.bstate == "") {
+            alert("No Birth State: Please fill out all fields")
+            return;
+        }
+        createAccount()
+    };
+
 	let baseURL = `http://localhost:8080/checkSUM/`; 
     let isEmailAvailable = (email) => {
         return fetch(baseURL + "is_email_available", {
@@ -164,19 +188,19 @@
 
     let nextPage= () => {
         if (user.email != user.confirmEmail) {
-            alert("emails do not match");
+            alert("Emails do not match");
             return;
         }
         if (user.password != user.confirmPassword) {
-            alert("passwords do not match");
+            alert("Passwords do not match");
             return;
         }
         if (user.email == "") {
-            alert("no email entered")
+            alert("No email entered: Please fill out all fields")
             return;
         }
         if (user.password == "") {
-            alert("no password entered")
+            alert("No password entered: Please fill out all fields")
             return;
         }
         isEmailAvailable(user.email).
