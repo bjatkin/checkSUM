@@ -43,7 +43,7 @@
         <hr>
         <div class="mdc-typography--body1">Birthday</div>
         <div class="center">
-            <Textfield style="width: 100%;" variant="outlined" bind:value={user.bdate} label="Birthdate: MM/DD/YYYY*" input$aria-controls="helper-text-outlined-a" input$aria-describedby="helper-text-outlined-a" />
+            <Textfield style="width: 100%;" variant="outlined" bind:value={user.bdate} onkeypress="return event.charCode === 0 || /[\d/]/.test(String.fromCharCode(event.charCode));" label="Birthdate: MM/DD/YYYY*" input$aria-controls="helper-text-outlined-a" input$aria-describedby="helper-text-outlined-a" />
             <HelperText id="helper-text-outlined-a">MM/DD/YYYY</HelperText>
         </div>
         <div class="center">
@@ -154,6 +154,22 @@
         if (user.bdate == "") {
             alert("No Birthdate: Please fill out all fields")
             return;
+        }
+        else {
+            if (user.bdate.length != 10) {
+                alert("Incorrect format for birthdate")
+                return;
+            }
+            if (user.bdate.charAt(2) != '/' && user.bdate.charAt(5) != '/') {
+                alert("Incorrect format for birthdate")
+                return;
+            }
+            let bd = user.bdate.toString()
+            let arr = bd.split("/")
+            if (arr.length != 3) {
+                alert("Incorrect format for birthdate")
+                return;
+            }
         }
         if (user.bcity == "") {
             alert("No Birth City: Please fill out all fields")

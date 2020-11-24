@@ -69,13 +69,13 @@
                 </div>
                 <div class="center">
                     <Textfield 
-                        type="password" 
+                        type="password"
                         variant="outlined"
                         bind:value={userPassword}
                         label="Password *"
                         input$aria-controls="helper-text-outlined-a"
                         input$aria-describedby="helper-text-outlined-a"
-                        style="width: 100%"
+                        style="width: 100%;"
                         />
                     <HelperText id="helper-text-outlined-a">Enter Your Password</HelperText>
                 </div>
