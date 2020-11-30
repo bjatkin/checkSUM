@@ -23,5 +23,3 @@ These files contains the http handlers and handler functions repectively.
 
 A fake Youtube page shows what API calls to checkSUM by third parties would look like. To run go to [127.0.0.1:8080/checkSUM/home?verify_demo=true](https://127.0.0.1:8080/checkSUM/home?verify_demo=true)
 
-# Timeline
-A roadmap of planned deliverables for the rest of the semester can be found [here.](https://docs.google.com/document/d/1NdiQAnKGqlKa_Ypop2ekr5bQ6m0KaofqSmb50HH0Z7M/edit?usp=sharing)
